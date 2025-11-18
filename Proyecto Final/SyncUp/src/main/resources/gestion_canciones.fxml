@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.GestionCancionesController">
+
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="🎵 Gestión de Canciones" />
+            <Region style="-fx-background-color: #000000;" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnVolver" onAction="#handleVolver" style="-fx-background-color: white; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="← Volver" />
+        </HBox>
+    </top>
+
+    <!-- Contenido -->
+    <center>
+        <HBox spacing="15.0" style="-fx-background-color: #1A8734;">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+
+            <!-- Panel izquierdo - Formulario -->
+            <VBox prefWidth="400.0" spacing="15.0">
+                <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Datos de la Canción" />
+                    <Separator />
+
+                    <VBox spacing="8.0">
+                        <Label style="-fx-font-weight: bold;" text="Título:" />
+                        <TextField fx:id="txtTitulo" promptText="Título de la canción" />
+
+                        <Label style="-fx-font-weight: bold;" text="Artista:" />
+                        <TextField fx:id="txtArtista" promptText="Nombre del artista" />
+
+                        <Label style="-fx-font-weight: bold;" text="Género:" />
+                        <ComboBox fx:id="cmbGenero" prefWidth="Infinity" promptText="Seleccione un género" />
+
+                        <Label style="-fx-font-weight: bold;" text="Año:" />
+                        <TextField fx:id="txtAño" promptText="Año de lanzamiento" />
+
+                        <Label style="-fx-font-weight: bold;" text="Duración (segundos):" />
+                        <TextField fx:id="txtDuracion" promptText="Duración en segundos" />
+                    </VBox>
+                </VBox>
+
+                <!-- Botones de acción -->
+                <VBox spacing="10.0">
+                    <Button fx:id="btnAgregar" onAction="#handleAgregar" prefHeight="40.0" prefWidth="Infinity" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="➕ Agregar Nueva Canción" />
+                    <Button fx:id="btnActualizar" onAction="#handleActualizar" prefHeight="40.0" prefWidth="Infinity" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="✏️ Actualizar Canción" />
+                    <Button fx:id="btnEliminar" onAction="#handleEliminar" prefHeight="40.0" prefWidth="Infinity" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="🗑️ Eliminar Canción" />
+                    <Separator />
+                    <!-- ⭐ NUEVO: Botón de Jamendo -->
+                    <Button fx:id="btnCargarJamendo" onAction="#handleCargarJamendo" prefHeight="40.0" prefWidth="Infinity" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="🎧 Importar desde Jamendo" />
+                    <Button fx:id="btnCargarMasivo" onAction="#handleCargarMasivo" prefHeight="40.0" prefWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="📁 Carga Masiva desde Archivo" />
+                </VBox>
+
+                <!-- Progreso de carga -->
+                <VBox spacing="5.0">
+                    <ProgressBar fx:id="progressBar" prefWidth="Infinity" visible="false" />
+                    <Label fx:id="lblEstado" style="-fx-text-fill: #3498db; -fx-font-weight: bold;" text="" wrapText="true" />
+                </VBox>
+            </VBox>
+
+            <!-- Panel derecho - Tabla -->
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <!-- ⭐ NUEVO: Panel de filtros mejorado -->
+                <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Buscar y Filtrar Canciones" />
+
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 12px;" text="Buscar por título o artista:" />
+                            <TextField fx:id="txtBuscar" prefWidth="250.0" promptText="Escribe para filtrar..." />
+                        </VBox>
+
+                        <VBox spacing="5.0">
+                            <Label style="-fx-font-size: 12px;" text="Filtrar por género:" />
+                            <ComboBox fx:id="cmbFiltroGenero" prefWidth="180.0" />
+                        </VBox>
+
+                        <VBox alignment="BOTTOM_CENTER">
+                            <Button fx:id="btnLimpiarFiltros" onAction="#handleLimpiarFiltros" prefHeight="35.0" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold;" text="🔄 Limpiar" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <TableView fx:id="tableCanciones" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colTitulo" prefWidth="250.0" text="Título" />
+                        <TableColumn fx:id="colArtista" prefWidth="200.0" text="Artista" />
+                        <TableColumn fx:id="colGenero" prefWidth="120.0" text="Género" />
+                        <TableColumn fx:id="colAño" prefWidth="80.0" text="Año" />
+                        <TableColumn fx:id="colDuracion" prefWidth="142.40004882812502" text="Duración" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

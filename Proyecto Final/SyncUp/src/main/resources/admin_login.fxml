@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.AdminLoginController">
+
+    <center>
+        <VBox alignment="CENTER" spacing="25.0" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            </padding>
+
+            <!-- Panel blanco central -->
+            <VBox alignment="CENTER" prefHeight="550.0" prefWidth="487.0" spacing="20.0" style="-fx-background-color: #1A8734; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);">
+                <padding>
+                    <Insets bottom="40.0" left="50.0" right="50.0" top="40.0" />
+                </padding>
+
+                <!-- Título de Administrador -->
+                <VBox alignment="CENTER" spacing="5.0">
+                    <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-background-color: #1A8734;" text="🔧 SyncUp Admin" />
+                    <Label style="-fx-font-size: 14px; -fx-text-fill: #000000;" text="Panel de Administración" />
+                </VBox>
+
+                <Separator prefWidth="300.0" />
+
+                <!-- Formulario -->
+                <VBox spacing="15.0" style="-fx-min-width: 350px; -fx-max-width: 350px;">
+                    <!-- Username -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Usuario Administrador:" />
+                        <TextField fx:id="txtUsername" promptText="Ingrese usuario admin" style="-fx-padding: 10; -fx-font-size: 14px;" />
+                    </VBox>
+
+                    <!-- Password -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Contraseña:" />
+                        <PasswordField fx:id="txtPassword" promptText="Ingrese contraseña" style="-fx-padding: 10; -fx-font-size: 14px;" />
+                    </VBox>
+
+                    <!-- Error -->
+                    <Label fx:id="lblError" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" text="" visible="false" wrapText="true" />
+
+                    <!-- Botones -->
+                    <VBox alignment="CENTER" spacing="10.0">
+                        <Button fx:id="btnLogin" onAction="#handleLogin" prefHeight="40.0" prefWidth="350.0" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Iniciar Sesión Administrador" />
+                        <Button fx:id="btnAtras" onAction="#handleAtras" prefHeight="40.0" prefWidth="350.0" style="-fx-background-color: transparent; -fx-text-fill: #000000; -fx-border-color: #000000; -fx-border-width: 2; -fx-font-weight: bold;" text="Volver al Login" />
+                    </VBox>
+
+                    <Separator prefWidth="350.0" style="-fx-opacity: 0.3;" />
+
+                    <Label style="-fx-text-fill: #000000; -fx-font-size: 12px; -fx-font-weight: bold;" text="⚠️ Acceso restringido solo para administradores" textAlignment="CENTER" wrapText="true" />
+                </VBox>
+
+                <!-- Footer -->
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #000000;" text="v1.0.0 - © 2025 SyncUp" />
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

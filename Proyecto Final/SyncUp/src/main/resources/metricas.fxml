@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.MetricasController">
+
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="📊 Métricas del Sistema" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnRefrescar" onAction="#handleRefrescar" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;" text="🔄 Refrescar" />
+            <Button fx:id="btnExportarEstadisticas" onAction="#handleExportarEstadisticas" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="📥 Exportar Estadísticas" />
+            <Button fx:id="btnVolver" onAction="#handleVolver" style="-fx-background-color: white; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="← Volver" />
+        </HBox>
+    </top>
+
+    <!-- Contenido -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #ecf0f1;">
+            <VBox spacing="20.0" style="-fx-background-color: #1A8734;">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <!-- Tarjetas de métricas principales -->
+                <HBox alignment="CENTER" spacing="20.0">
+                    <!-- Card Total Canciones -->
+                    <VBox alignment="CENTER" prefWidth="280.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+                        <Label style="-fx-font-size: 50px;" text="🎵" />
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="Total de Canciones" />
+                        <Label fx:id="lblTotalCanciones" style="-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #3498db;" text="0" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #95a5a6;" text="En el catálogo" />
+                    </VBox>
+
+                    <!-- Card Total Usuarios -->
+                    <VBox alignment="CENTER" prefWidth="280.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+                        <Label style="-fx-font-size: 50px;" text="👥" />
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="Total de Usuarios" />
+                        <Label fx:id="lblTotalUsuarios" style="-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;" text="0" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #95a5a6;" text="Usuarios registrados" />
+                    </VBox>
+
+                    <!-- Card Género Popular -->
+                    <VBox alignment="CENTER" prefWidth="280.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+                        <Label style="-fx-font-size: 50px;" text="🎧" />
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="Género Más Popular" />
+                        <Label fx:id="lblGeneroMasPopular" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;" text="-" textAlignment="CENTER" wrapText="true" />
+                    </VBox>
+
+                    <!-- Card Artista Popular -->
+                    <VBox alignment="CENTER" prefWidth="280.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+                        <Label style="-fx-font-size: 50px;" text="🌟" />
+                        <Label style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d; -fx-font-weight: bold;" text="Artista Más Popular" />
+                        <Label fx:id="lblArtistaMasPopular" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e67e22;" text="-" textAlignment="CENTER" wrapText="true" />
+                    </VBox>
+                </HBox>
+
+                <!-- Gráficos -->
+                <HBox alignment="TOP_CENTER" spacing="20.0">
+                    <!-- Gráfico de Géneros (Pie Chart) -->
+                    <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Distribución por Género" />
+                        <Separator />
+                        <PieChart fx:id="pieChartGeneros" labelsVisible="true" legendSide="BOTTOM" prefHeight="400.0" startAngle="90">
+                        </PieChart>
+                    </VBox>
+
+                    <!-- Gráfico de Artistas (Bar Chart) -->
+                    <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Top 10 Artistas Más Populares" />
+                        <Separator />
+                        <BarChart fx:id="barChartArtistas" barGap="5" categoryGap="10" legendVisible="false" prefHeight="400.0">
+                            <xAxis>
+                                <CategoryAxis label="Artista" side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Número de Canciones" side="LEFT" />
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                </HBox>
+
+                <!-- Información adicional -->
+                <VBox spacing="15.0" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="📈 Resumen Estadístico" />
+                    <Separator />
+
+                    <GridPane hgap="30.0" vgap="15.0">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" minWidth="200.0" />
+                            <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+
+                        <Label style="-fx-font-weight: bold;" text="📊 Promedio de canciones por género:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Calculado en tiempo real" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label style="-fx-font-weight: bold;" text="🎼 Diversidad de géneros:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Basado en el catálogo actual" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label style="-fx-font-weight: bold;" text="👥 Engagement de usuarios:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Medido por favoritos y conexiones sociales" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                  </rowConstraints>
+                    </GridPane>
+                </VBox>
+
+                <!-- Footer con información -->
+                <HBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #3498db; -fx-padding: 20; -fx-background-radius: 15;">
+                    <VBox alignment="CENTER" spacing="5.0">
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="💡 Tip Administrativo" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: white;" text="Las estadísticas se actualizan en tiempo real. Usa el botón 'Refrescar' para obtener los datos más recientes." textAlignment="CENTER" wrapText="true" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

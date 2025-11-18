@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.RecomendacionesController">
+
+    <!-- TOP: Header -->
+    <top>
+        <VBox>
+            <!-- Barra superior con logo y botón volver -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #5B6FD6; -fx-padding: 20;" spacing="20">
+                <Label text="⭐ Recomendaciones" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="← Volver" onAction="#handleVolver" style="-fx-font-size: 14; -fx-padding: 10 20;"/>
+            </HBox>
+
+            <!-- ⭐ BARRA DE REPRODUCCIÓN ESTILO SPOTIFY -->
+            <VBox style="-fx-background-color: #1a1a1a; -fx-padding: 12 20; -fx-spacing: 8;">
+
+                <!-- Fila 1: Información de canción + Barra de progreso -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <!-- Info canción -->
+                    <Label fx:id="lblReproduciendo" style="-fx-text-fill: #1db954; -fx-font-size: 11px; -fx-font-weight: bold;" text="♫ No hay canción" />
+
+                    <!-- Barra de progreso -->
+                    <ProgressBar fx:id="progressBar" prefWidth="250.0" style="-fx-accent: #1db954;" />
+
+                    <!-- Tiempo actual / Total -->
+                    <Label fx:id="lblTiempo" style="-fx-text-fill: #b3b3b3; -fx-font-size: 10px;" text="0:00 / 0:00" />
+
+                    <Region HBox.hgrow="ALWAYS" />
+
+                    <!-- Volumen -->
+                    <Label style="-fx-text-fill: #b3b3b3; -fx-font-size: 10px;" text="🔊" />
+                    <Slider fx:id="sliderVolumen" max="100.0" min="0.0" prefWidth="70.0" style="-fx-control-inner-background: #404040;" value="50.0" />
+                    <Label fx:id="lblVolumen" style="-fx-text-fill: #b3b3b3; -fx-font-size: 10px;" text="50%" />
+                </HBox>
+
+                <!-- Fila 2: Botones de control centrados -->
+                <HBox alignment="CENTER" spacing="15.0">
+                    <!-- Shuffle -->
+                    <Button fx:id="btnShuffle" onAction="#handleShuffle" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-text-fill: #b3b3b3; -fx-font-size: 16px; -fx-cursor: hand; -fx-padding: 0;" text="🔀" />
+
+                    <!-- Anterior -->
+                    <Button fx:id="btnAnterior" onAction="#handleAnterior" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #404040; -fx-text-fill: #1db954; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 20; -fx-cursor: hand;" text="⏮" />
+
+                    <!-- Play/Pausa -->
+                    <Button fx:id="btnPlayPause" onAction="#handlePlayPause" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #1db954; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 25; -fx-cursor: hand;" text="▶" />
+
+                    <!-- Siguiente -->
+                    <Button fx:id="btnSiguiente" onAction="#handleSiguiente" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #404040; -fx-text-fill: #1db954; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 20; -fx-cursor: hand;" text="⏭" />
+
+                    <!-- Repetir -->
+                    <Button fx:id="btnRepetir" onAction="#handleRepetir" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-text-fill: #b3b3b3; -fx-font-size: 16px; -fx-cursor: hand; -fx-padding: 0;" text="🔁" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </top>
+
+    <!-- CENTER: Contenido Principal -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- Título de la sección -->
+            <Label fx:id="lblTitulo" text="Recomendaciones" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #5B6FD6;"/>
+
+            <!-- Botones de opciones -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="🎧 Descubrimiento Semanal" onAction="#handleDescubrimientoSemanal"
+                        style="-fx-font-size: 14; -fx-padding: 12 30; -fx-background-color: #5B6FD6; -fx-text-fill: white; -fx-border-radius: 8;"/>
+                <Button text="🔥 Tendencias para ti" onAction="#handleTendencias"
+                        style="-fx-font-size: 14; -fx-padding: 12 30; -fx-background-color: #E63946; -fx-text-fill: white; -fx-border-radius: 8;"/>
+                <Button text="🎵 Explorar Jamendo" onAction="#handleExplorarJamendo"
+                        style="-fx-font-size: 14; -fx-padding: 12 30; -fx-background-color: #06A77D; -fx-text-fill: white; -fx-border-radius: 8;"/>
+            </HBox>
+
+            <!-- Consejo -->
+            <VBox style="-fx-border-color: #FFD700; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-color: #FFFACD; -fx-padding: 15;">
+                <Label text="💡 Consejo:" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                <Label text="Selecciona una canción para reproducirla automáticamente. Navega con los botones anterior/siguiente para explorar la lista."
+                       style="-fx-font-size: 12; -fx-wrap-text: true;"/>
+            </VBox>
+
+            <!-- Tabla de Recomendaciones -->
+            <TableView fx:id="tableRecomendaciones" prefHeight="300" style="-fx-font-size: 13;">
+                <columns>
+                    <TableColumn fx:id="colTitulo" text="🎵 Título" prefWidth="250"/>
+                    <TableColumn fx:id="colArtista" text="👤 Artista" prefWidth="200"/>
+                    <TableColumn fx:id="colGenero" text="🎸 Género" prefWidth="120"/>
+                    <TableColumn fx:id="colAnio" text="📅 Año" prefWidth="80"/>
+                    <TableColumn fx:id="colDuracion" text="⏱️ Duración" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <!-- Botones de acción -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="❤ Agregar a Favoritos" onAction="#handleAgregarFavorito"
+                        style="-fx-font-size: 12; -fx-padding: 8 20; -fx-background-color: #06A77D; -fx-text-fill: white;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

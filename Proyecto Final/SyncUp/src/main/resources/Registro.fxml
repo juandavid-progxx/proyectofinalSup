@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.RegistroController">
+
+    <center>
+        <VBox alignment="CENTER" spacing="25.0" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+
+            <!-- Panel blanco central -->
+            <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #1A8734; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);">
+                <padding>
+                    <Insets bottom="40.0" left="50.0" right="50.0" top="40.0" />
+                </padding>
+
+                <!-- Título -->
+                <VBox alignment="CENTER" spacing="5.0">
+                    <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Crear Cuenta" />
+                    <Label style="-fx-font-size: 14px; -fx-text-fill: #000000;" text="Únete a la comunidad de SyncUp" />
+                </VBox>
+
+                <Separator prefWidth="400.0" />
+
+                <!-- Formulario -->
+                <VBox spacing="15.0" style="-fx-min-width: 400px; -fx-max-width: 400px;">
+                    <!-- Username -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Nombre de usuario:" />
+                        <TextField fx:id="txtUsername" promptText="3-20 caracteres alfanuméricos" style="-fx-padding: 10; -fx-font-size: 14px;" />
+                    </VBox>
+
+                    <!-- Nombre -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Nombre completo:" />
+                        <TextField fx:id="txtNombre" promptText="Tu nombre" style="-fx-padding: 10; -fx-font-size: 14px;" />
+                    </VBox>
+
+                    <!-- Password -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Contraseña:" />
+                        <PasswordField fx:id="txtPassword" promptText="Mínimo 6 caracteres" style="-fx-padding: 10; -fx-font-size: 14px;" />
+                    </VBox>
+
+                    <!-- Confirmar Password -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Confirmar contraseña:" />
+                        <PasswordField fx:id="txtConfirmarPassword" promptText="Repite tu contraseña" style="-fx-padding: 10; -fx-font-size: 14px;" />
+                    </VBox>
+
+                    <!-- Mensajes -->
+                    <Label fx:id="lblError" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" text="" visible="false" wrapText="true" />
+                    <Label fx:id="lblExito" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;" text="" visible="false" wrapText="true" />
+
+                    <!-- Botones -->
+                    <VBox alignment="CENTER" spacing="10.0">
+                        <Button fx:id="btnRegistrar" onAction="#handleRegistrar" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Registrarse" />
+                        <Button fx:id="btnVolver" onAction="#handleVolver" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-text-fill: #000000; -fx-border-color: #000000; -fx-border-width: 2; -fx-font-weight: bold;" text="Volver al inicio de sesión" />
+                    </VBox>
+                </VBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

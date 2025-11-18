@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.GestionUsuariosController">
+
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="👥 Gestión de Usuarios" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnVolver" onAction="#handleVolver" style="-fx-background-color: white; -fx-text-fill: #2c3e50; -fx-font-weight: bold;" text="← Volver" />
+        </HBox>
+    </top>
+
+    <!-- Contenido -->
+    <center>
+        <VBox spacing="15.0" style="-fx-background-color: #1A8734;">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+
+            <!-- Panel de búsqueda y acciones -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+                <Label style="-fx-font-weight: bold;" text="Buscar usuario:" />
+                <TextField fx:id="txtBuscar" prefWidth="300.0" promptText="Buscar por nombre..." style="-fx-padding: 8;" />
+                <Button fx:id="btnBuscar" onAction="#handleBuscar" prefHeight="35.0" style="-fx-background-color: #1A8734; -fx-text-fill: white; -fx-font-weight: bold;" text="🔍 Buscar" />
+                <Button fx:id="btnRefrescar" onAction="#handleRefrescar" prefHeight="35.0" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-weight: bold;" text="🔄 Refrescar" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblTotalUsuarios" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Total de usuarios: 0" />
+            </HBox>
+
+            <!-- Alerta informativa -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #fff3cd; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #ffc107; -fx-border-width: 2; -fx-border-radius: 10;">
+                <Label style="-fx-font-size: 20px;" text="⚠️" />
+                <VBox spacing="3.0">
+                    <Label style="-fx-font-weight: bold; -fx-text-fill: #856404;" text="Información importante:" />
+                    <Label style="-fx-text-fill: #856404; -fx-font-size: 12px;" text="• No se puede eliminar al administrador principal (admin)" />
+                    <Label style="-fx-text-fill: #856404; -fx-font-size: 12px;" text="• Al eliminar un usuario, también se eliminarán sus conexiones sociales" />
+                </VBox>
+            </HBox>
+
+            <!-- Contenedor principal -->
+            <HBox spacing="15.0" VBox.vgrow="ALWAYS">
+                <!-- Tabla de usuarios -->
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Lista de Usuarios" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnEliminar" onAction="#handleEliminar" prefHeight="35.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="🗑️ Eliminar Usuario" />
+                    </HBox>
+
+                    <TableView fx:id="tableUsuarios" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colUsername" prefWidth="209.99998396635056" text="Username" />
+                            <TableColumn fx:id="colNombre" prefWidth="220.4000244140625" text="Nombre Completo" />
+                            <TableColumn fx:id="colFavoritos" prefWidth="118.0" text="Favoritos" />
+                            <TableColumn fx:id="colSeguidos" prefWidth="154.0" text="Siguiendo" />
+                        </columns>
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="10.0">
+                                <Label style="-fx-font-size: 50px; -fx-text-fill: #bdc3c7;" text="👤" />
+                                <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" text="No hay usuarios para mostrar" />
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+
+                <!-- Panel de detalles -->
+                <VBox prefWidth="350.0" spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Detalles del Usuario" />
+                    <Separator />
+
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                        <VBox spacing="10.0">
+                            <Label fx:id="lblDetalles" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" text="Seleccione un usuario para ver detalles" wrapText="true" />
+                        </VBox>
+                    </ScrollPane>
+
+                    <!-- Información adicional -->
+                    <VBox spacing="10.0" style="-fx-background-color: #e8f5e9; -fx-padding: 15; -fx-background-radius: 10;">
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #2e7d32;" text="💡 Información" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #2e7d32;" text="Selecciona un usuario de la tabla para ver información detallada y realizar acciones." wrapText="true" />
+                    </VBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

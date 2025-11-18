@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.co.Controladores.RadioController">
+
+    <!-- Header -->
+    <top>
+        <VBox>
+            <!-- Barra superior -->
+            <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #667eea;">
+                <padding>
+                    <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                </padding>
+
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="📻 Mi Radio Personalizada" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnDetener" onAction="#handleDetener" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;" text="⏹️ Detener Radio" />
+                <Button fx:id="btnVolver" onAction="#handleVolver" style="-fx-background-color: white; -fx-text-fill: #e74c3c; -fx-font-weight: bold;" text="← Volver" />
+            </HBox>
+
+            <!-- ⭐ BARRA DE REPRODUCCIÓN ESTILO SPOTIFY -->
+            <VBox style="-fx-background-color: #1a1a1a; -fx-padding: 12 20; -fx-spacing: 8;">
+
+                <!-- Fila 1: Información de canción + Barra de progreso -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <!-- Info canción -->
+                    <Label fx:id="lblReproduciendo" style="-fx-text-fill: #1db954; -fx-font-size: 11px; -fx-font-weight: bold;" text="♫ No hay canción" />
+
+                    <!-- Barra de progreso -->
+                    <ProgressBar fx:id="progressBar" prefWidth="250.0" style="-fx-accent: #1db954;" />
+
+                    <!-- Tiempo actual / Total -->
+                    <Label fx:id="lblTiempo" style="-fx-text-fill: #b3b3b3; -fx-font-size: 10px;" text="0:00 / 0:00" />
+
+                    <Region HBox.hgrow="ALWAYS" />
+
+                    <!-- Volumen -->
+                    <Label style="-fx-text-fill: #b3b3b3; -fx-font-size: 10px;" text="🔊" />
+                    <Slider fx:id="sliderVolumen" max="100.0" min="0.0" prefWidth="70.0" style="-fx-control-inner-background: #404040;" value="50.0" />
+                    <Label fx:id="lblVolumen" style="-fx-text-fill: #b3b3b3; -fx-font-size: 10px;" text="50%" />
+                </HBox>
+
+                <!-- Fila 2: Botones de control centrados -->
+                <HBox alignment="CENTER" spacing="15.0">
+                    <!-- Shuffle -->
+                    <Button fx:id="btnShuffle" onAction="#handleShuffle" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-text-fill: #b3b3b3; -fx-font-size: 16px; -fx-cursor: hand; -fx-padding: 0;" text="🔀" />
+
+                    <!-- Anterior -->
+                    <Button fx:id="btnAnterior" onAction="#handleAnterior" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #404040; -fx-text-fill: #1db954; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 20; -fx-cursor: hand;" text="⏮" />
+
+                    <!-- Play/Pausa -->
+                    <Button fx:id="btnPlayPause" onAction="#handlePlayPause" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #1db954; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 25; -fx-cursor: hand;" text="▶" />
+
+                    <!-- Siguiente -->
+                    <Button fx:id="btnSiguiente" onAction="#handleSiguiente" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #404040; -fx-text-fill: #1db954; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 20; -fx-cursor: hand;" text="⏭" />
+
+                    <!-- Repetir -->
+                    <Button fx:id="btnRepetir" onAction="#handleRepetir" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-text-fill: #b3b3b3; -fx-font-size: 16px; -fx-cursor: hand; -fx-padding: 0;" text="🔁" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </top>
+
+    <!-- Contenido -->
+    <center>
+        <VBox spacing="15.0">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+
+            <!-- Panel de Reproducción Actual -->
+            <VBox spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #667eea;" text="🎵 Reproducción Actual" />
+
+                <!-- Info de canción actual -->
+                <VBox spacing="8.0" style="-fx-background-color: #f9f9f9; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #667eea; -fx-border-width: 2;">
+                    <Label fx:id="lblCancionActual" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #667eea;" text="No hay canción" />
+                    <Label fx:id="lblArtista" style="-fx-font-size: 14px; -fx-text-fill: #333;" text="-" />
+
+                    <HBox spacing="30.0">
+                        <Label fx:id="lblGenero" style="-fx-font-size: 12px; -fx-text-fill: #666;" text="-" />
+                        <Label fx:id="lblAnio" style="-fx-font-size: 12px; -fx-text-fill: #666;" text="-" />
+                        <Label fx:id="lblPosicion" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #667eea;" text="0/0" />
+                    </HBox>
+
+                    <Label fx:id="lblMensaje" style="-fx-font-size: 12px; -fx-text-fill: #888; -fx-font-style: italic;" text="Inicia una radio desde la búsqueda" />
+                </VBox>
+
+                <!-- Controles de reproducción -->
+                <HBox alignment="CENTER" spacing="15.0">
+                    <Button fx:id="btnAgregarFavorito" onAction="#handleAgregarFavorito" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="❤️ Agregar a Favoritos" />
+                </HBox>
+            </VBox>
+
+            <!-- Contenedor de dos columnas: Cola + Similares -->
+            <HBox spacing="15.0" VBox.vgrow="ALWAYS">
+
+                <!-- Cola de Reproducción -->
+                <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="📋 Cola de Reproducción" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #888;" text="Haz clic en una canción para reproducirla automáticamente" />
+
+                    <TableView fx:id="tableColaReproduccion" style="-fx-font-size: 11px;" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colTitulo" prefWidth="250.0" text="🎵 Título" />
+                            <TableColumn fx:id="colArtista" prefWidth="200.0" text="👤 Artista" />
+                            <TableColumn fx:id="colGenero" prefWidth="120.0" text="🎸 Género" />
+                            <TableColumn fx:id="colAño" prefWidth="80.0" text="📅 Año" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Canciones Similares -->
+                <VBox prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="🎧 Similares" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #888;" text="Canciones relacionadas" />
+
+                    <ListView fx:id="listSimilares" style="-fx-font-size: 11px; -fx-control-inner-background: #f9f9f9;" VBox.vgrow="ALWAYS" />
+                </VBox>
+
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

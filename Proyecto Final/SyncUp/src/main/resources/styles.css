@@ -1,0 +1,342 @@
+/* ==================== ESTILOS GLOBALES ==================== */
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f5f5f5;
+}
+
+/* ==================== BOTONES ==================== */
+
+.button {
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 3);
+}
+
+.button:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 3, 0, 0, 1);
+}
+
+/* ==================== CAMPOS DE TEXTO ==================== */
+
+.text-field, .password-field, .text-area {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-padding: 8 12 8 12;
+    -fx-background-color: white;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: #667eea;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+}
+
+/* ==================== COMBO BOX ==================== */
+
+.combo-box {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+}
+
+.combo-box:focused {
+    -fx-border-color: #667eea;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+}
+
+.combo-box .list-cell {
+    -fx-padding: 8 12 8 12;
+}
+
+/* ==================== TABLAS ==================== */
+
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.table-view .column-header {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 12 8 12 8;
+    -fx-font-size: 13px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10 8 10 8;
+    -fx-border-color: transparent transparent #f0f0f0 transparent;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+    -fx-text-fill: #1db954;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+/* ==================== LISTAS ==================== */
+
+.list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}
+
+.list-cell {
+    -fx-padding: 10 15 10 15;
+    -fx-background-color: white;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* ==================== LABELS ==================== */
+
+.label {
+    -fx-text-fill: #333;
+}
+
+/* ==================== SEPARADORES ==================== */
+
+.separator {
+    -fx-background-color: #e0e0e0;
+}
+
+.separator .line {
+    -fx-border-color: #e0e0e0;
+}
+
+/* ==================== PROGRESS BAR - SPOTIFY ==================== */
+
+.progress-bar {
+    -fx-accent: #1db954;
+    -fx-background-color: #404040;
+    -fx-background-radius: 5;
+    -fx-min-height: 4;
+    -fx-padding: 0;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #404040;
+    -fx-background-radius: 5;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #1db954;
+    -fx-background-radius: 5;
+}
+
+/* ==================== SLIDER VOLUMEN - SPOTIFY ==================== */
+
+.slider {
+    -fx-padding: 0;
+}
+
+.slider .thumb {
+    -fx-background-color: #1db954;
+    -fx-background-radius: 50%;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, rgba(29, 185, 84, 0.5), 5, 0, 0, 0);
+}
+
+.slider .thumb:hover {
+    -fx-background-color: #1ed760;
+}
+
+.slider .track {
+    -fx-background-color: #404040;
+    -fx-background-radius: 3;
+    -fx-padding: 3;
+}
+
+.slider:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(29, 185, 84, 0.8), 8, 0, 0, 0);
+}
+
+/* ==================== SCROLL PANE ==================== */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #bbb;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #999;
+}
+
+/* ==================== TAB PANE ==================== */
+
+.tab-pane {
+    -fx-background-color: white;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #f5f5f5;
+}
+
+.tab {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 10 20 10 20;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #666;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #667eea;
+}
+
+/* ==================== RADIO BUTTONS ==================== */
+
+.radio-button {
+    -fx-cursor: hand;
+}
+
+.radio-button .radio {
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+}
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: #667eea;
+}
+
+/* ==================== CHECKBOXES ==================== */
+
+.check-box {
+    -fx-cursor: hand;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #667eea;
+}
+
+/* ==================== TOOLTIPS ==================== */
+
+.tooltip {
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 12px;
+}
+
+/* ==================== CHARTS ==================== */
+
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-legend {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+}
+
+.chart-pie-label {
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.default-color0.chart-pie { -fx-pie-color: #667eea; }
+.default-color1.chart-pie { -fx-pie-color: #764ba2; }
+.default-color2.chart-pie { -fx-pie-color: #f093fb; }
+.default-color3.chart-pie { -fx-pie-color: #4facfe; }
+.default-color4.chart-pie { -fx-pie-color: #43e97b; }
+.default-color5.chart-pie { -fx-pie-color: #fa709a; }
+.default-color6.chart-pie { -fx-pie-color: #fee140; }
+.default-color7.chart-pie { -fx-pie-color: #30cfd0; }
+
+/* ==================== ALERTS Y DIALOGS ==================== */
+
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-radius: 5;
+    -fx-padding: 8 20 8 20;
+}
+
+/* ==================== CONTEXTOS ESPECIALES ==================== */
+
+.error {
+    -fx-text-fill: #e74c3c;
+    -fx-font-weight: bold;
+}
+
+.success {
+    -fx-text-fill: #1db954;
+    -fx-font-weight: bold;
+}
+
+.warning {
+    -fx-text-fill: #f39c12;
+    -fx-font-weight: bold;
+}
+
+.info {
+    -fx-text-fill: #3498db;
+    -fx-font-weight: bold;
+}
